@@ -1,30 +1,20 @@
-/*
-    Get date and time - uses the ezTime library at https://github.com/ropg/ezTime -
-    and then show data from a DHT22 on a web page served by the Huzzah and
-    push data to an MQTT server - uses library from https://pubsubclient.knolleary.net
+#include <ESP8266WiFi.h> // Include the ESP8266WiFi.h library
+#include <ESP8266WebServer.h> // Include the ESP8266WebServer.h library
+#include <ezTime.h> // Include the ezTime.h library 
+#include <PubSubClient.h> // Include the PubSubClient.h library
+#include <DHT.h> // Include the DHT.h library
+#include <DHT_U.h> // Include the DHT_U.h library
 
-    Duncan Wilson
-    CASA0014 - 2 - Plant Monitor Workshop
-    May 2020
-*/
-
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-#include <ezTime.h>
-#include <PubSubClient.h>
-#include <DHT.h>
-#include <DHT_U.h>
-
-#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 Define constant DHTTYPE
 
 // Sensors - DHT22 and Nails
 uint8_t DHTPin = 12;        // on Pin 2 of the Huzzah
 uint8_t soilPin = 0;      // ADC or A0 pin on Huzzah
-float Temperature;
-float Humidity;
+float Temperature;  // Declare variable to store temperature reading from DHT22
+float Humidity;  // Declare variable to store humidity reading from DHT22
 int Moisture = 1; // initial value just in case web page is loaded before readMoisture called
-int sensorVCC = 13;
-int blueLED = 2;
+int sensorVCC = 13; // Define the VCC pin for the sensor
+int blueLED = 2; // Define the pin connected to a blue LED
 DHT dht(DHTPin, DHTTYPE);   // Initialize DHT sensor.
 
 
@@ -40,18 +30,18 @@ DHT dht(DHTPin, DHTTYPE);   // Initialize DHT sensor.
 #define SECRET_MQTTPASS "password";
  */
 
-const char* ssid     = SECRET_SSID;
-const char* password = SECRET_PASS;
-const char* mqttuser = SECRET_MQTTUSER;
-const char* mqttpass = SECRET_MQTTPASS;
+const char* ssid     = SECRET_SSID;  // Assign WiFi SSID from secret constant
+const char* password = SECRET_PASS;  // Assign WiFi password from secret constant
+const char* mqttuser = SECRET_MQTTUSER;  // Assign MQTT username from secret constant
+const char* mqttpass = SECRET_MQTTPASS;  // Assign MQTT password from secret constant 
 
-ESP8266WebServer server(80);
-const char* mqtt_server = "mqtt.cetools.org";
-WiFiClient espClient;
-PubSubClient client(espClient);
-long lastMsg = 0;
-char msg[50];
-int value = 0;
+ESP8266WebServer server(80);  // Initialize a web server on port 80
+const char* mqtt_server = "mqtt.cetools.org";  // Define MQTT server address
+WiFiClient espClient;  // Create a WiFi client instance
+PubSubClient client(espClient);  // Create an MQTT client instance using the WiFi client
+long lastMsg = 0;  // Variable to store the timestamp of the last sent message
+char msg[50];  // Buffer to store the MQTT message
+int value = 0;  // Variable to store a value
 
 // Date and time
 Timezone GB;
@@ -83,11 +73,11 @@ void setup() {
   // run initialisation functions
   startWifi();
   startWebserver();
-  syncDate();
+  syncDate();  // Synchronize the date and time
 
   // start MQTT server
   client.setServer(mqtt_server, 1884);
-  client.setCallback(callback);
+  client.setCallback(callback);  // Set the callback function for MQTT messages
 
 }
 
@@ -95,25 +85,27 @@ void loop() {
   // handler for receiving requests to webserver
   server.handleClient();
 
+  // Check if a new minute has started using the minuteChanged() function
   if (minuteChanged()) {
     readMoisture();
     sendMQTT();
     Serial.println(GB.dateTime("H:i:s")); // UTC.dateTime("l, d-M-y H:i:s.v T")
   }
   
-  client.loop();
+  client.loop();  // Maintain the MQTT connection and check for incoming messages
 }
 
+// This function reads the moisture level from the soil sensor
 void readMoisture(){
   
   // power the sensor
-  digitalWrite(sensorVCC, HIGH);
-  digitalWrite(blueLED, LOW);
+  digitalWrite(sensorVCC, HIGH);  // Turn on the VCC for the sensor
+  digitalWrite(blueLED, LOW);  // Turn on the blue LED (assuming common cathode connection)
   delay(100);
   // read the value from the sensor:
   Moisture = analogRead(soilPin);         
-  digitalWrite(sensorVCC, LOW);  
-  digitalWrite(blueLED, HIGH);
+  digitalWrite(sensorVCC, LOW);  // Turn off the VCC for the sensor
+  digitalWrite(blueLED, HIGH);  // Turn off the blue LED
   delay(100);
   Serial.print("Wet ");
   Serial.println(Moisture);   // read the value from the nails
@@ -121,10 +113,10 @@ void readMoisture(){
 
 void startWifi() {
   // We start by connecting to a WiFi network
-  Serial.println();
+  Serial.println();  // Print a newline to the serial monitor for better readability
   Serial.print("Connecting to ");
-  Serial.println(ssid);
-  WiFi.begin(ssid, password);
+  Serial.println(ssid);  // Print the WiFi SSID to the serial monitor
+  WiFi.begin(ssid, password);  // Begin the WiFi connection using the provided SSID and password
 
   // check to see if connected and wait until you are
   while (WiFi.status() != WL_CONNECTED) {
@@ -139,19 +131,21 @@ void startWifi() {
 
 void syncDate() {
   // get real date and time
-  waitForSync();
-  Serial.println("UTC: " + UTC.dateTime());
+  waitForSync();  // Wait until the time synchronization is complete
+  Serial.println("UTC: " + UTC.dateTime());  // Print the current UTC date and time to the serial monitor
   GB.setLocation("Europe/London");
   Serial.println("London time: " + GB.dateTime());
 
 }
 
+// This function sends the sensor data to an MQTT broker
 void sendMQTT() {
 
   if (!client.connected()) {
-    reconnect();
+    // This function sends the sensor data to an MQTT broker
+    reconnect();  // Attempt to reconnect the MQTT client
   }
-  client.loop();
+  client.loop();  // Maintain the MQTT connection and check for incoming messages
 
   Temperature = dht.readTemperature(); // Gets the values of the temperature
   snprintf (msg, 50, "%.1f", Temperature);
@@ -173,6 +167,7 @@ void sendMQTT() {
 
 }
 
+// This function is called when a message is received on an MQTT topic the client is subscribed to
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -215,6 +210,7 @@ void reconnect() {
   }
 }
 
+// This function starts the web server
 void startWebserver() {
   // when connected and IP address obtained start HTTP server  
   server.on("/", handle_OnConnect);
@@ -223,16 +219,19 @@ void startWebserver() {
   Serial.println("HTTP server started");  
 }
 
+// This function handles the root URL ("/") request
 void handle_OnConnect() {
   Temperature = dht.readTemperature(); // Gets the values of the temperature
   Humidity = dht.readHumidity(); // Gets the values of the humidity
   server.send(200, "text/html", SendHTML(Temperature, Humidity, Moisture));
 }
 
+// This function handles unknown URLs
 void handle_NotFound() {
   server.send(404, "text/plain", "Not found");
 }
 
+// This function generates an HTML string with the provided sensor data
 String SendHTML(float Temperaturestat, float Humiditystat, int Moisturestat) {
   String ptr = "<!DOCTYPE html> <html>\n";
   ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
