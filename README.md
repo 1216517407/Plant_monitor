@@ -1,8 +1,10 @@
 # Plant Monitor Project Outline
 
-This document documents the process of the final project plant monitor in the CASA0014 Connected Environment and highlights the key actions to help the reader or myself to reproduce the device at a later date.
+This document documents the process of the final project plant monitor in the CASA0014 Connected Environment and highlights the key actions to help the reader or myself to reproduce the device in the future.
 
-I hope it will help you as well as me in the future, good luck!
+This is my first time to use Arduino,so there may be some mistakes, please feel free to point them out. And many thanks to all the professors and TA's for their help.
+
+I hope it will help you as well as me in the future, **good luck**!
 
 ## 1. Equipments and Libraries Requirements
 
@@ -34,3 +36,6 @@ In this section I will list the libraries that need to be installed for code rep
 - PubSubClient ( [Official Document](https://pubsubclient.knolleary.net/) )
 - DHT ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
 - DHT_U ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
+
+
+## 2. Files
