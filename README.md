@@ -44,10 +44,16 @@ In this section I will list the libraries that need to be installed for code rep
 
 ### 2.1 01_WiFi_module
 
-This folder contains a file with the same name to test if the WiFi module ( ESP8266 )works.
+This folder contains a file with the same name to test if the WiFi module ( ESP8266 ) works.
 
 :warning: When executing this code, make sure that the ESP8266 is properly connected to your computer and can be correctly recognised by the IDE. If you can't connect correctly, click [here](https://workshops.cetools.org/codelabs/CASA0014-2-Plant-Monitor/index.html?index=..%2F..casa0014#2).
 
+This section of the code is mainly used to test whether the ESP8266 can work correctly. Before executing the code, make sure you put your WiFi name and password into the code correctly.
+```
+const char* ssid     = "Your WiFi name";
+const char* password = "Your WiFi's password";
+```
+If your ESP8266 module is working correctly, then `WiFi connected` along with your IP address  will appear in Serial Monitor. Serial Monitor will then update your local time in real time.
 
 
 
