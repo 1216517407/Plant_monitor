@@ -38,8 +38,16 @@ In this section I will list the libraries that need to be installed for code rep
 - DHT_U ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
 
 
-## 2. Files
+## 2. Files and Usage
 
-&#xCODE:exclamation:;
+:warning: Be sure to change the name of the `.ino` file inside the folder after changing the name of the folder to the **same name** as the folder to ensure that the program can run properly.
 
-### 2.1 
+### 2.1 01_WiFi_module
+
+This folder contains a file with the same name to test if the WiFi module ( ESP8266 )works.
+
+:warning: When executing this code, make sure that the ESP8266 is properly connected to your computer and can be correctly recognised by the IDE. If you can't connect correctly, click [here](https://workshops.cetools.org/codelabs/CASA0014-2-Plant-Monitor/index.html?index=..%2F..casa0014#2).
+
+
+
+
