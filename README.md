@@ -161,3 +161,9 @@ sudo systemctl enable influxdb.service
 ```
 
 After successfully running it, we can access InfluxDB on our computer at the following URL: `http://your_host_name.celab:8086/`
+
+After logging in, you can use the template to create a database with information about the Raspberry Pi.
+
+After this, a bucket named mqtt-data can be created to store the sensor data on MQTT.
+
+#### 3.3 Telegraf Installation
