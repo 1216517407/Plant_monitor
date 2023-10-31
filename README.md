@@ -113,4 +113,44 @@ In order to cope with different scenarios, I will document several methods that 
 1. **Easiest**: Connect the Raspberry Pi to the monitor using a cable with mini HDMI at one end to allow for GUI connectivity.
 2. If you connect your Raspberry Pi to your home WiFi, then you can use [Advanced IP Scanner](https://www.advanced-ip-scanner.com/) to scan for IP addresses and corresponding devices within a certain range. It is very easy to find the IP address of the Raspberry Pi by this method.
 3. On a Windows device, you can share your connected WiFi network to the Raspberry Pi via the RJ45 network cable port, at which point you just need to use a network cable to connect the network cable port on the Raspberry Pi to the network cable port on the Windows device. Once connected, open the Windows terminal and enter the following command: `arp -a` to get the IP address assigned to the Raspberry Pi. But please note that this IP is not the IP of the Raspberry Pi under WiFi, so we need to use SSH to connect to this IP address and go into the Raspberry Pi's system to manually get it connected to WiFi and use the `ifconfig` command to see the IP address after connecting to WiFi.
-4. Use `ssh pi@your_host_name.local` command directly. If a Raspberry Pi with the same name exists on the same network at this time, the connection may fail.
+4. Use `ssh pi@your_host_name.local` command directly. If a Raspberry Pi with the same name exists on the same network, the connection may fail.
+
+To this point, you should have been able to connect to your own Raspberry Pi remotely. :tada::tada::tada: Next, you will need to install some software on your Raspberry Pi to handle the data.
+
+### 3.3 Installations
+
+#### 3.3.1 System Upgrade
+
+Before you install any other software, upgrade your Raspberry Pi's system to the latest version using the following command:
+```
+sudo apt update
+sudo apt upgrade -y
+sudo reboot
+```
+
+#### 3.3.2 InfluxDB Installation
+
+You can check the official website of InfluxDB [here](https://www.influxdata.com/).
+
+First add the Influx key to ensure secure downloads, and also add the repository to the source list for convenient downloads.
+
+```
+wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+
+echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
+
+echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+```
+
+With the repository added we now run another update to the package list
+
+```
+sudo apt-get update
+```
+
+The installation is finally completed with the following command:
+
+```
+sudo apt-get install influxdb2 -y
+```
+
