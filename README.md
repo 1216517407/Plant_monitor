@@ -167,4 +167,4 @@ After logging in, you can use the template to create a database with information
 After this, a bucket named mqtt-data can be created to store the sensor data on MQTT.
 
 #### 3.3 Telegraf Installation
-future
+future work
