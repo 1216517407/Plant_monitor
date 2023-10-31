@@ -55,5 +55,22 @@ const char* password = "Your WiFi's password";
 ```
 If your ESP8266 module is working correctly, then `WiFi connected` along with your IP address  will appear in Serial Monitor. Serial Monitor will then update your local time in real time.
 
+## 2.2 02_test_MQTT
+
+This part of the code is used to test whether the ESP8266 can upload messages to the MQTT server.
+
+Before executing the code, create a file named `arduino_secrets.h` in this directory to store sensitive information such as passwords.
+
+The content and format are as follows:
+```
+#define SECRET_SSID "ssid name"
+#define SECRET_PASS "ssid password"
+#define SECRET_MQTTUSER "user name - eg student"
+#define SECRET_MQTTPASS "password"
+```
+:warning::warning::warning: **Never upload this file to Github as it contains sensitive information.**
+
+If your settings are correct, then after a successful execution you will receive a message that the connection is successful and the IP address assigned to the ESP8266. Also every five seconds a message will be sent to the MQTT and it will also print out the information it received. In addition, when it receives a message with the content `1`, the LED will light up.
+
 
 
