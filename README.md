@@ -99,3 +99,18 @@ Congratulations! :tada::tada::tada: This is the end of the first part about the 
 Let's get into the setup of your Raspberry Pi!
 
 ## 3. Raspberry Pi Setup
+
+### 3.1 System Setup
+
+Download the [official imager](https://www.raspberrypi.com/software/) from the Raspberry Pi website and set the WiFi name and password in the system settings and start the SSH service. Wait patiently for the flashing to finish, then you can install the TF card in the memory card slot on the back of the Raspberry Pi.
+
+### 3.2 Get the IP Address
+
+The next part will be one of the **biggest difficulties** in setting up the Raspberry Pi. In this section, we need to get the IP address of the Raspberry Pi and connect remotely using SSH service.
+
+In order to cope with different scenarios, I will document several methods that I have used myself.
+
+1. **Easiest**: Connect the Raspberry Pi to the monitor using a cable with mini HDMI at one end to allow for GUI connectivity.
+2. If you connect your Raspberry Pi to your home WiFi, then you can use [Advanced IP Scanner](https://www.advanced-ip-scanner.com/) to scan for IP addresses and corresponding devices within a certain range. It is very easy to find the IP address of the Raspberry Pi by this method.
+3. On a Windows device, you can share your connected WiFi network to the Raspberry Pi via the RJ45 network cable port, at which point you just need to use a network cable to connect the network cable port on the Raspberry Pi to the network cable port on the Windows device. Once connected, open the Windows terminal and enter the following command: `arp -a` to get the IP address assigned to the Raspberry Pi. But please note that this IP is not the IP of the Raspberry Pi under WiFi, so we need to use SSH to connect to this IP address and go into the Raspberry Pi's system to manually get it connected to WiFi and use the `ifconfig` command to see the IP address after connecting to WiFi.
+4. Use `ssh pi@your_host_name.local` command directly. If a Raspberry Pi with the same name exists on the same network at this time, the connection may fail.
