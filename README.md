@@ -153,4 +153,11 @@ The installation is finally completed with the following command:
 ```
 sudo apt-get install influxdb2 -y
 ```
+Finally to get InfluxDB up and running at reboot we need to enable and start it within systemctl:
+```
+sudo systemctl unmask influxdb.service
+sudo systemctl start influxdb
+sudo systemctl enable influxdb.service
+```
 
+After successfully running it, we can access InfluxDB on our computer at the following URL: `http://your_host_name.celab:8086/`
