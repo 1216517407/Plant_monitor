@@ -34,8 +34,8 @@ In this section I will list the libraries that need to be installed for code rep
 - ESP8266WebServer 
 - ezTime ( [Official Document](https://github.com/ropg/ezTime) )
 - PubSubClient ( [Official Document](https://pubsubclient.knolleary.net/) )
-- DHT ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
-- DHT_U ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
+- DHT from Adafruit ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
+- DHT_U from Adafruit ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
 
 
 ## 2. Files and Usage
@@ -55,7 +55,7 @@ const char* password = "Your WiFi's password";
 ```
 If your ESP8266 module is working correctly, then `WiFi connected` along with your IP address  will appear in Serial Monitor. Serial Monitor will then update your local time in real time.
 
-## 2.2 02_test_MQTT
+### 2.2 02_test_MQTT
 
 This part of the code is used to test whether the ESP8266 can upload messages to the MQTT server.
 
@@ -72,5 +72,30 @@ The content and format are as follows:
 
 If your settings are correct, then after a successful execution you will receive a message that the connection is successful and the IP address assigned to the ESP8266. Also every five seconds a message will be sent to the MQTT and it will also print out the information it received. In addition, when it receives a message with the content `1`, the LED will light up.
 
+### 2.3 03_test_soil_sensor
 
+This section of the code will be used to test if the soil sensor circuit works properly.
 
+After uploading the code to the soldered sensor, you will be able to see a line graph of the changes in the Serial Plotter if everything is working correctly.
+
+### 2.4 04_test_DHT
+
+This section will be used to test if the DHT sensor is working properly.
+
+If everything is installed correctly, then the current temperature as well as the humidity will be displayed in the serial monitor.
+
+### 2.5 05_DHT22_MQTT
+
+The content of this section will be the **core code** of the plant monitor.
+
+After going through the previous test files, you should be able to confirm that everything is fine with your sensor and that it works the way you envisioned. It's time to start working on the core code for our plant sensor!
+
+Before you start, please copy the file ( that is `arduino_secrets.h` ) created when testing MQTT that stores your sensitive information to the current folder.
+
+After compiling the code and uploading it to the ESP8266, if everything is working properly, you will be able to see that the temperature, humidity, and soil moisture data is being updated under the topic you created when you open MQTT Explorer.
+
+Congratulations! :tada::tada::tada: This is the end of the first part about the ESP8266 setup!
+
+Let's get into the setup of your Raspberry Pi!
+
+## 3. Raspberry Pi Setup
