@@ -1,6 +1,6 @@
 # Plant Monitor Project Outline
 
-This document documents the process of the final project plant monitor in the CASA0014 Connected Environment and highlights the key actions to help the reader or myself to reproduce the device in the future.
+This document documents the process of the final project plant monitor in the CASA0014 Connected Environment  ( [Moodle Page](https://workshops.cetools.org/codelabs/CASA0014-2-Plant-Monitor/index.html?index=..%2F..casa0014#0) ) and highlights the key actions to help the reader or myself to reproduce the device in the future.
 
 This is my first time to use Arduino,so there may be some mistakes, please feel free to point them out. And many thanks to all the professors and TA's for their help.
 
@@ -39,3 +39,7 @@ In this section I will list the libraries that need to be installed for code rep
 
 
 ## 2. Files
+
+&#xCODE:exclamation:;
+
+### 2.1 
