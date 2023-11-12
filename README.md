@@ -37,6 +37,12 @@ In this section I will list the libraries that need to be installed for code rep
 - DHT from Adafruit ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
 - DHT_U from Adafruit ( [Official Document](https://github.com/Khuuxuanngoc/DHT-sensor-library) )
 
+### 1.3 Plant
+
+Since you're going to make a plant monitor, plants are definitely essential!
+
+I used tulips for my monitoring. Tulips are dormant in summer, and in the autumn or winter they take root and sprout new shoots, but do not come out of the soil. After a cold winter, they begin to stretch and grow to form stems and leaves in early February of the following year (at temperatures above 5°C) and flower in March-April. Tulips are long day flowers and prefer a sunny environment. Adequate light helps the plant to photosynthesise, which promotes growth and flowering. In addition, they are temperature-sensitive, with a suitable growing temperature of 15-20°C. In caring for tulips, you need to provide the plant with proper moisture and keep the soil in a moist state.
+
 
 ## 2. Files and Usage
 
@@ -166,5 +172,5 @@ After logging in, you can use the template to create a database with information
 
 After this, a bucket named mqtt-data can be created to store the sensor data on MQTT.
 
-#### 3.3 Telegraf Installation
-future work
+#### 3.3 Telegraf and Further Installation
+Please follow the steps on the [Workshop Page](https://workshops.cetools.org/codelabs/CASA0014-2-Plant-Monitor/index.html?index=..%2F..casa0014#12)
