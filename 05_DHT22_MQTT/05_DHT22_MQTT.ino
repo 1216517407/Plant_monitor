@@ -103,7 +103,8 @@ void readMoisture(){
   digitalWrite(blueLED, LOW);  // Turn on the blue LED (assuming common cathode connection)
   delay(100);
   // read the value from the sensor:
-  Moisture = analogRead(soilPin);         
+  // Moisture = analogRead(soilPin);
+  Moisture = map(analogRead(soilPin), 0,200, 0, 100);         
   digitalWrite(sensorVCC, LOW);  // Turn off the VCC for the sensor
   digitalWrite(blueLED, HIGH);  // Turn off the blue LED
   delay(100);
