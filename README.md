@@ -176,3 +176,13 @@ After this, a bucket named mqtt-data can be created to store the sensor data on 
 
 #### 3.3 Telegraf and Further Installation
 Please follow the steps on the [Workshop Page](https://workshops.cetools.org/codelabs/CASA0014-2-Plant-Monitor/index.html?index=..%2F..casa0014#12)
+
+### 4. My Data
+
+In this part I will present some interesting observations I have made about the data.
+
+![curve](https://github.com/Ereshkigallll/Plant_monitor/blob/main/00%20Assets/1.png)
+
+In the figure above, we can notice that the moisture of the soil (the purple line) is very stable. And through my long term observation, I have found that the moisture rises dramatically until 100% when just watered (as shown in the figure below). It then starts to drop slowly and eventually stabilises at around 75%.
+
+![curve](https://github.com/Ereshkigallll/Plant_monitor/blob/main/00%20Assets/2.png)
