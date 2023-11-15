@@ -43,6 +43,8 @@ Since you're going to make a plant monitor, plants are definitely essential!
 
 I used hyacinths for my monitoring. Hyacinths are dormant in summer, and in the autumn or winter, they take root and sprout new shoots, but do not emerge from the soil. After a cold winter, they begin to stretch and grow to form stems and leaves in early spring (at temperatures around 4°C to 15°C) and flower mainly in March-April. Hyacinths prefer a sunny environment with at least 6 hours of direct sunlight. Adequate light supports photosynthesis, promoting growth and flowering. They are also sensitive to temperature and humidity, thriving best in warm, moist conditions. In caring for hyacinths, it's important to maintain consistent soil moisture, especially during their active growth in spring, and to provide a well-draining, loamy soil with a slightly acidic to neutral pH (6.0-7.0).
 
+![hyacinths](https://github.com/Ereshkigallll/Plant_monitor/blob/main/00%20Assets/hyacinths.jpg "hyacinths.jpg")
+
 
 ## 2. Files and Usage
 
