@@ -41,7 +41,7 @@ In this section I will list the libraries that need to be installed for code rep
 
 Since you're going to make a plant monitor, plants are definitely essential!
 
-I used tulips for my monitoring. Tulips are dormant in summer, and in the autumn or winter they take root and sprout new shoots, but do not come out of the soil. After a cold winter, they begin to stretch and grow to form stems and leaves in early February of the following year (at temperatures above 5°C) and flower in March-April. Tulips are long day flowers and prefer a sunny environment. Adequate light helps the plant to photosynthesise, which promotes growth and flowering. In addition, they are temperature-sensitive, with a suitable growing temperature of 15-20°C. In caring for tulips, you need to provide the plant with proper moisture and keep the soil in a moist state.
+I used hyacinths for my monitoring. Hyacinths are dormant in summer, and in the autumn or winter, they take root and sprout new shoots, but do not emerge from the soil. After a cold winter, they begin to stretch and grow to form stems and leaves in early spring (at temperatures around 4°C to 15°C) and flower mainly in March-April. Hyacinths prefer a sunny environment with at least 6 hours of direct sunlight. Adequate light supports photosynthesis, promoting growth and flowering. They are also sensitive to temperature and humidity, thriving best in warm, moist conditions. In caring for hyacinths, it's important to maintain consistent soil moisture, especially during their active growth in spring, and to provide a well-draining, loamy soil with a slightly acidic to neutral pH (6.0-7.0).
 
 
 ## 2. Files and Usage
